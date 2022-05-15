@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Mobile/HW2ghavi/Mobile-Programming-HW2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Mobile/HW2ghavi/Mobile-Programming-HW2/app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="..\:/Users/Matin/Desktop/Dropbox/CE/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.40217391304347827" />
-        <entry key="..\:/Users/Matin/Desktop/Dropbox/CE/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_start.xml" value="0.40217391304347827" />
       </map>
     </option>
   </component>
