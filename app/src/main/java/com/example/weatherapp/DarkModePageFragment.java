@@ -1,11 +1,13 @@
 package com.example.weatherapp;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +22,20 @@ public class DarkModePageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_dark_mode_page, container, false);
+
+        Context contextThemeWrapper;
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            requireContext().setTheme(R.style.Theme_Dark);
+            contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.Theme_Dark);
         } else {
-            requireContext().setTheme(R.style.Theme_Light);
+            contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.Theme_Light);
         }
 
+        LayoutInflater layoutInflater = inflater.cloneInContext(contextThemeWrapper);
 
-        switchCompat = (SwitchCompat) view.findViewById(R.id.dark_theme_switch);
+        View view = layoutInflater.inflate(R.layout.fragment_dark_mode_page, container, false);
+
+        switchCompat = view.findViewById(R.id.dark_theme_switch);
 
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
