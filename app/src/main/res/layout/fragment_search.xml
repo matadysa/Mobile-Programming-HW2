@@ -1,93 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background_color"
     tools:context=".SearchFragment"
+    android:orientation="vertical"
     tools:visibility="visible">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:padding="2dp"
-        android:text="@string/select_input_type"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <RadioGroup
-        android:id="@+id/radio_button_group"
+    <com.example.weatherapp.EnhancedRadioGroup
+        android:paddingHorizontal="70sp"
+        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="?attr/text_color">
-
+        android:layout_height="wrap_content">
         <RadioButton
-            android:id="@+id/fi_and_L_radio_button"
-            android:textColor="?attr/text_color"
+            android:text="@string/city_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fi_and_l" />
-
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_alignBaseline="@id/city_edittext"
+                android:id="@+id/city_textview"
+                android:text="@string/city_textview"
+                android:layout_alignParentStart="true"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/city_edittext"
+                android:layout_alignParentEnd="true"
+                android:layout_width="0dp"
+                android:layout_toEndOf="@+id/city_textview"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:importantForAutofill="no" />
+        </RelativeLayout>
         <RadioButton
-            android:id="@+id/city_name_radio_button"
-            android:textColor="?attr/text_color"
+            android:text="@string/coordinates"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/city_name" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="200dp"
-        android:background="@color/white"
-        android:text="@string/search"
-        android:textColor="?attr/text_color" />
-
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/fi_input_text"
-        android:textColor="?attr/text_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="40dp"
-        android:hint="@string/fi"
-        android:inputType="number"
-        android:visibility="invisible" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/L_input_text"
-        android:textColor="?attr/text_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginEnd="40dp"
-        android:hint="@string/l"
-        android:inputType="number"
-        android:visibility="invisible" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/city_name_input_text"
-        android:textColor="?attr/text_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="40dp"
-        android:hint="@string/city_name"
-        android:inputType="textShortMessage"
-        android:visibility="invisible" />
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_alignBaseline="@id/longitude_edittext"
+                android:id="@+id/longitude_textview"
+                android:text="@string/longitude_textview"
+                android:layout_alignParentStart="true"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/longitude_edittext"
+                android:layout_alignParentEnd="true"
+                android:layout_width="0dp"
+                android:layout_toEndOf="@+id/longitude_textview"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:importantForAutofill="no" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_alignBaseline="@id/latitude_edittext"
+                android:id="@+id/latitude_textview"
+                android:text="@string/latitude_textview"
+                android:layout_alignParentStart="true"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/latitude_edittext"
+                android:layout_alignParentEnd="true"
+                android:layout_width="0dp"
+                android:layout_toEndOf="@+id/latitude_textview"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:importantForAutofill="no" />
+        </RelativeLayout>
+    </com.example.weatherapp.EnhancedRadioGroup>
 
 
-</FrameLayout>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:padding="2dp"-->
+<!--        android:text="@string/select_input_type"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold" />-->
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/radio_button_group"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:textColor="?attr/text_color">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/fi_and_L_radio_button"-->
+<!--            android:textColor="?attr/text_color"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/fi_and_l" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/city_name_radio_button"-->
+<!--            android:textColor="?attr/text_color"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/city_name" />-->
+<!--    </RadioGroup>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/search_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:background="@color/white"-->
+<!--        android:text="@string/search"-->
+<!--        android:textColor="?attr/text_color" />-->
+
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/fi_input_text"-->
+<!--        android:textColor="?attr/text_color"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="40dp"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:layout_marginEnd="40dp"-->
+<!--        android:hint="@string/fi"-->
+<!--        android:inputType="number"-->
+<!--        android:visibility="invisible" />-->
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/L_input_text"-->
+<!--        android:textColor="?attr/text_color"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="40dp"-->
+<!--        android:layout_marginTop="270dp"-->
+<!--        android:layout_marginEnd="40dp"-->
+<!--        android:hint="@string/l"-->
+<!--        android:inputType="number"-->
+<!--        android:visibility="invisible" />-->
+
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/city_name_input_text"-->
+<!--        android:textColor="?attr/text_color"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="40dp"-->
+<!--        android:layout_marginTop="400dp"-->
+<!--        android:layout_marginEnd="40dp"-->
+<!--        android:hint="@string/city_name"-->
+<!--        android:inputType="textShortMessage"-->
+<!--        android:visibility="invisible" />-->
+
+
+</RelativeLayout>

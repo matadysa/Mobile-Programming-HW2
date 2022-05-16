@@ -41,34 +41,34 @@ public class SearchFragment extends Fragment {
 
         View view = layoutInflater.inflate(R.layout.fragment_search, container, false);
 
-        radioGroup = view.findViewById(R.id.radio_button_group);
-        fiAndLRadioButton = view.findViewById(R.id.fi_and_L_radio_button);
-        cityNameRadioButton = view.findViewById(R.id.city_name_radio_button);
+//        radioGroup = view.findViewById(R.id.radio_button_group);
+//        fiAndLRadioButton = view.findViewById(R.id.fi_and_L_radio_button);
+//        cityNameRadioButton = view.findViewById(R.id.city_name_radio_button);
+//
+//        fiInputText = view.findViewById(R.id.fi_input_text);
+//        LInputText = view.findViewById(R.id.L_input_text);
+//        cityNameInputText = view.findViewById(R.id.city_name_input_text);
+//
+//        searchButton = view.findViewById(R.id.search_button);
 
-        fiInputText = view.findViewById(R.id.fi_input_text);
-        LInputText = view.findViewById(R.id.L_input_text);
-        cityNameInputText = view.findViewById(R.id.city_name_input_text);
-
-        searchButton = view.findViewById(R.id.search_button);
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId){
-                    case R.id.fi_and_L_radio_button:
-                        cityNameInputText.setVisibility(View.GONE);
-                        fiInputText.setVisibility(View.VISIBLE);
-                        LInputText.setVisibility(View.VISIBLE);
-                        break;
-
-                    case R.id.city_name_radio_button:
-                        cityNameInputText.setVisibility(View.VISIBLE);
-                        fiInputText.setVisibility(View.GONE);
-                        LInputText.setVisibility(View.GONE);
-                        break;
-                }
-            }
-        });
+//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+//                switch (checkedId){
+//                    case R.id.fi_and_L_radio_button:
+//                        cityNameInputText.setVisibility(View.GONE);
+//                        fiInputText.setVisibility(View.VISIBLE);
+//                        LInputText.setVisibility(View.VISIBLE);
+//                        break;
+//
+//                    case R.id.city_name_radio_button:
+//                        cityNameInputText.setVisibility(View.VISIBLE);
+//                        fiInputText.setVisibility(View.GONE);
+//                        LInputText.setVisibility(View.GONE);
+//                        break;
+//                }
+//            }
+//        });
 
         return view;
     }

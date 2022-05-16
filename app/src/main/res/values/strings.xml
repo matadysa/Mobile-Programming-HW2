@@ -6,8 +6,9 @@
     <string name="setting">setting</string>
     <string name="dark_mode">Dark Theme</string>
     <string name="select_input_type">Select input type:</string>
-    <string name="fi_and_l">fi and L</string>
-    <string name="city_name">City name</string>
-    <string name="fi">fi</string>
-    <string name="l">L</string>
+    <string name="city_name">City Name</string>
+    <string name="city_textview">City: </string>
+    <string name="coordinates">Coordinates</string>
+    <string name="longitude_textview">Longitude: </string>
+    <string name="latitude_textview">Latitude: </string>
 </resources>
