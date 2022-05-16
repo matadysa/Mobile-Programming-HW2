@@ -51,4 +51,38 @@
     <!--android:textColor="@color/white"-->
 
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/fi_input_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:hint="@string/fi"
+        android:inputType="number"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/L_input_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:hint="@string/l"
+        android:inputType="number"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/city_name_input_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:hint="@string/city_name"
+        android:inputType="textShortMessage"
+        android:visibility="invisible"/>
+
+
 </FrameLayout>
