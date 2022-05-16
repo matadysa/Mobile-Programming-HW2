@@ -1,11 +1,14 @@
 package com.example.weatherapp;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +28,18 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
-    }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        Context contextThemeWrapper;
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.Theme_Dark);
+        } else {
+            contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.Theme_Light);
+        }
+
+        LayoutInflater layoutInflater = inflater.cloneInContext(contextThemeWrapper);
+
+        View view = layoutInflater.inflate(R.layout.fragment_search, container, false);
 
         radioGroup = view.findViewById(R.id.radio_button_group);
         fiAndLRadioButton = view.findViewById(R.id.fi_and_L_radio_button);
@@ -61,5 +69,7 @@ public class SearchFragment extends Fragment {
                 }
             }
         });
+
+        return view;
     }
 }
