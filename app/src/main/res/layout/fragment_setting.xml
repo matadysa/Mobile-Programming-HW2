@@ -5,11 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".SettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/setting"
+        android:text="@string/dark_mode"
         android:gravity="center"/>
+
+    <Switch
+        android:id="@+id/dark_mode_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
+        android:text=""
+        android:visibility="visible"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </FrameLayout>
