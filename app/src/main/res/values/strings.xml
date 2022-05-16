@@ -1,14 +1,8 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-<<<<<<< HEAD
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-=======
     <string name="welcome_to_weather">Welcome\nto\nWeatherApp</string>
     <string name="search">search</string>
     <string name="setting">setting</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dark_mode">Dark mode</string>
->>>>>>> master
 </resources>
