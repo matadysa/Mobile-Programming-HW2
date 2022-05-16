@@ -5,4 +5,7 @@
     <string name="search">search</string>
     <string name="setting">setting</string>
     <string name="dark_mode">Dark mode</string>
+    <string name="select_input_type">Select input type:</string>
+    <string name="fi_and_l">fi and L</string>
+    <string name="city_name">City name</string>
 </resources>

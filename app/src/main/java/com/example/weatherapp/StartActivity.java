@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Objects;
+
 public class StartActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
@@ -18,7 +20,7 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        getSupportActionBar().hide();
+        //Objects.requireNonNull(getSupportActionBar()).hide();
 
         tabLayout = findViewById(R.id.main_tab);
         viewPager = findViewById(R.id.view_pager);
@@ -27,7 +29,7 @@ public class StartActivity extends AppCompatActivity {
 
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new SearchFragment(), "Search");
-        vpAdapter.addFragment(new SettingFragment(), "Setting");
+        vpAdapter.addFragment(new DarkModePageFragment(), "Setting");
         viewPager.setAdapter(vpAdapter);
     }
 }

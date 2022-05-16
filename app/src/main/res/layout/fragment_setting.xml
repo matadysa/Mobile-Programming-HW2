@@ -21,6 +21,6 @@
         android:scaleY="1.25"
         android:text=""
         android:visibility="visible"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        tools:ignore="UseSwitchCompatOrMaterialXml"/>
 
 </FrameLayout>
