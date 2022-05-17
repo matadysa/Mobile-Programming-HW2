@@ -98,11 +98,12 @@ public class SearchFragment extends Fragment {
 
         cityNameInputText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(cityNameRadioButton.isChecked()){
+                if (cityNameRadioButton.isChecked()) {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -119,11 +120,12 @@ public class SearchFragment extends Fragment {
 
         latitudeInputText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(fiAndLRadioButton.isChecked()){
+                if (fiAndLRadioButton.isChecked()) {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -200,9 +202,29 @@ public class SearchFragment extends Fragment {
     private HashMap<String, Object> jsonDataExtractor(JSONObject jsonObject) {
         HashMap<String, Object> hashMap = new HashMap<>();
         try {
-            Date date =  new Date(jsonObject.getLong("dt") * 1000);
+            //Date
+            Date date = new Date(jsonObject.getLong("dt") * 1000);
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-//            Log.d("date", sdf.format(date));
+            hashMap.put("date", sdf.format(date));
+            //Actual Temp
+            JSONObject actualTempObject = jsonObject.getJSONObject("temp");
+            double actualTemp, actualTempMax, actualTempMin;
+            actualTemp = actualTempObject.getDouble("day");
+            actualTempMax = actualTempObject.getDouble("max");
+            actualTempMin = actualTempObject.getDouble("min");
+            hashMap.put("actualTemp", actualTemp);
+            hashMap.put("actualTempMax", actualTempMax);
+            hashMap.put("actualTempMin", actualTempMin);
+            //Feels Like Temp
+            JSONObject feelsLikeTempObject = jsonObject.getJSONObject("feels_like");
+            double feelsLikeTemp;
+            feelsLikeTemp = feelsLikeTempObject.getDouble("day");
+            hashMap.put("feelsLikeTemp", feelsLikeTemp);
+            //Humidity
+            double humidity = jsonObject.getDouble("humidity");
+            hashMap.put("humidity", humidity);
+            //wind
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
