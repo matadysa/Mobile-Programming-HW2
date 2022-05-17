@@ -1,15 +1,7 @@
 package com.example.weatherapp;
 
 import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -20,20 +12,19 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.constants.MapboxConstants;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 public class SearchFragment extends Fragment {
 
@@ -82,16 +73,14 @@ public class SearchFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(cityNameRadioButton.isChecked()){
+                if (cityNameRadioButton.isChecked()) {
                     String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
                     getWeatherInformation(cityName, null, null);
-                }
-                else if(fiAndLRadioButton.isChecked()){
+                } else if (fiAndLRadioButton.isChecked()) {
                     Double longitude = Double.valueOf(Objects.requireNonNull(longitudeInputText.getText()).toString().trim());
                     Double latitude = Double.valueOf(Objects.requireNonNull(latitudeInputText.getText()).toString().trim());
                     getWeatherInformation(null, longitude, latitude);
-                }
-                else{
+                } else {
                     Toast.makeText(getActivity(), "select a radio button", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -124,6 +113,8 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
+        requestQueue.add(stringRequest);
     }
 
 }
