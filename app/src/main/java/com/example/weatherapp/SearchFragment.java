@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class SearchFragment extends Fragment {
 
     RadioGroup radioGroup;
     RadioButton fiAndLRadioButton, cityNameRadioButton;
-    TextInputEditText longitudeInputText, latitudeInputText, cityNameInputText;
+    EditText longitudeInputText, latitudeInputText, cityNameInputText;
     Button searchButton;
 
     //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -65,7 +66,7 @@ public class SearchFragment extends Fragment {
         fiAndLRadioButton = view.findViewById(R.id.fi_and_l_radio_button);
 
         cityNameInputText = view.findViewById(R.id.city_edittext);
-        longitudeInputText = view.findViewById(R.id.longitude_textview);
+        longitudeInputText = view.findViewById(R.id.longitude_edittext);
         latitudeInputText = view.findViewById(R.id.latitude_edittext);
 
         searchButton = view.findViewById(R.id.button);
@@ -90,7 +91,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void getWeatherInformation(String cityName, Double longitude, Double latitude) {
-        String url = "";
+        String url;
         if (cityName == null) {
             url = coordinateApiUrl +
                     "lat=" + df.format(latitude) +
@@ -106,12 +107,7 @@ public class SearchFragment extends Fragment {
             public void onResponse(String response) {
                 Log.d("response", response);
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }, error -> Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show());
 
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
         requestQueue.add(stringRequest);
