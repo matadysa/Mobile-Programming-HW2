@@ -14,23 +14,27 @@ import java.util.HashMap;
 public class WeatherActivity extends AppCompatActivity {
 
     //    public static ArrayList<WeatherData> weatherData;
-    RecyclerView weatherDataRecyclerView;
     TextView cityNameText;
+
+    ArrayList<String> dateValues = new ArrayList<>();
+    ArrayList<Double> tempValues = new ArrayList<>();
+    ArrayList<Double> feelsLikeValues = new ArrayList<>();
+    ArrayList<Double> windValues = new ArrayList<>();
+    ArrayList<String> overallValues = new ArrayList<>();
+    ArrayList<HashMap<String, Object>> fullData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        weatherDataRecyclerView = findViewById(R.id.recycler_view);
         cityNameText = findViewById(R.id.city_name_value);
 
         Bundle extras = getIntent().getExtras();
-        ArrayList<HashMap<String, Object>> daysData;
         String cityName = "";
         double longitude = 0, latitude = 0;
         if(extras != null) {
-            daysData = (ArrayList<HashMap<String, Object>>) extras.get("data");
+            fullData = (ArrayList<HashMap<String, Object>>) extras.get("data");
             cityName = extras.getString("cityName");
             longitude = extras.getDouble("lon");
             latitude = extras.getDouble("lat");
@@ -42,7 +46,14 @@ public class WeatherActivity extends AppCompatActivity {
         }
         cityNameText.setText(cityName);
 
-
+        for (HashMap<String, Object> map : fullData) {
+            dateValues.add((String) map.get("date"));
+            tempValues.add((Double) map.get("actualTemp"));
+            feelsLikeValues.add((Double) map.get("feelsLikeTemp"));
+            windValues.add((Double) map.get("windSpeed"));
+            overallValues.add((String) map.get("overallCondition"));
+        }
+        initRecyclerView();
 //        Intent intent = getIntent();
 //
 //        //get input from intent TODO
@@ -71,5 +82,18 @@ public class WeatherActivity extends AppCompatActivity {
 //        weatherDataRecyclerView.setAdapter(adapter);
 //        weatherDataRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    private void initRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,
+                dateValues,
+                tempValues,
+                feelsLikeValues,
+                windValues,
+                overallValues,
+                fullData);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

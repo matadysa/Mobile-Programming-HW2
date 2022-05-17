@@ -12,31 +12,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    ArrayList<String> dateValues = new ArrayList<>();
-    ArrayList<Double> tempValues = new ArrayList<>();
-    ArrayList<Double> feelsLikeValues = new ArrayList<>();
-    ArrayList<Double> windValues = new ArrayList<>();
-    ArrayList<String> overallValues = new ArrayList<>();
-    ArrayList<String> overallIcons = new ArrayList<>();
+    ArrayList<String> dateValues;
+    ArrayList<Double> tempValues;
+    ArrayList<Double> feelsLikeValues;
+    ArrayList<Double> windValues;
+    ArrayList<String> overallValues;
+    ArrayList<HashMap<String, Object>> fullData;
     Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> dateValues,
+    public RecyclerViewAdapter(Context mContext,
+                               ArrayList<String> dateValues,
                                ArrayList<Double> tempValues,
                                ArrayList<Double> feelsLikeValues,
                                ArrayList<Double> windValues,
                                ArrayList<String> overallValues,
-                               ArrayList<String> overallIcons,
-                               Context mContext) {
+                               ArrayList<HashMap<String, Object>> fullData) {
+        this.mContext = mContext;
         this.dateValues = dateValues;
         this.tempValues = tempValues;
         this.feelsLikeValues = feelsLikeValues;
         this.windValues = windValues;
         this.overallValues = overallValues;
-        this.overallIcons = overallIcons;
-        this.mContext = mContext;
+        this.fullData = fullData;
     }
 
     @NonNull
@@ -76,12 +77,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 holder.overallIcon.setImageResource(R.drawable.mist);
                 break;
         }
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO: call new activity for detailed page
-            }
-        });
+//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //TODO: call new activity for detailed page, pass the fulllData to next activity
+//            }
+//        });
     }
 
     @Override
