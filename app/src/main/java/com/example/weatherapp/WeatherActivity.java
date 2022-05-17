@@ -1,6 +1,7 @@
 package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,7 +14,6 @@ import java.util.HashMap;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    //    public static ArrayList<WeatherData> weatherData;
     TextView cityNameText;
 
     ArrayList<String> dateValues = new ArrayList<>();
@@ -25,6 +25,11 @@ public class WeatherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+            setTheme(R.style.Theme_Dark);
+        else
+            setTheme(R.style.Theme_Light);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
@@ -33,7 +38,7 @@ public class WeatherActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String cityName = "";
         double longitude = 0, latitude = 0;
-        if(extras != null) {
+        if (extras != null) {
             fullData = (ArrayList<HashMap<String, Object>>) extras.get("data");
             cityName = extras.getString("cityName");
             longitude = extras.getDouble("lon");
@@ -53,35 +58,8 @@ public class WeatherActivity extends AppCompatActivity {
             windValues.add((Double) map.get("windSpeed"));
             overallValues.add((String) map.get("overallCondition"));
         }
+        dateValues.set(0, "Today");
         initRecyclerView();
-//        Intent intent = getIntent();
-//
-//        //get input from intent TODO
-//
-//        // String data = intent.getStringExtra(StartActivity.data)
-//
-//        //convert data to a array of weather data
-//        ArrayList<WeatherData> weatherData = new ArrayList<>();
-//
-//        weatherData.add(new WeatherData("2.5", "34", "33.4", "cold"));
-//        weatherData.add(new WeatherData("3.5", "44", "33.5", "sunny"));
-//        weatherData.add(new WeatherData("4.5", "54", "33.6", "rainy"));
-//        weatherData.add(new WeatherData("5.5", "64", "33.7", "cold"));
-//        weatherData.add(new WeatherData("5.5", "64", "33.7", "cold"));
-//        weatherData.add(new WeatherData("5.5", "64", "33.7", "cold"));
-//        weatherData.add(new WeatherData("5.5", "64", "33.7", "cold"));
-//        weatherData.add(new WeatherData("5.5", "64", "33.7", "cold"));
-//        weatherData.add(new WeatherData("5.5", "64", "33.7", "cold"));
-//
-//
-//        //
-//
-//
-//        weatherAdapter adapter = new weatherAdapter(this, weatherData);
-//
-//        weatherDataRecyclerView.setAdapter(adapter);
-//        weatherDataRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
     private void initRecyclerView() {

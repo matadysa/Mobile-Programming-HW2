@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="#BCCFE0"
+    android:background="?attr/background_color"
     android:stretchColumns="1,2,3,4">
 
     <TableRow>
@@ -16,6 +16,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="10dp"
+            android:textColor="?attr/text_color"
             android:textSize="22sp" />
     </TableRow>
 
@@ -48,7 +49,7 @@
             android:src="@drawable/wind_sign"
             android:textSize="16sp" />
 
-<!--        should be dynamic-->
+        <!--        should be dynamic-->
         <ImageView
             android:id="@+id/overall_icon"
             android:layout_width="49dp"
@@ -61,12 +62,14 @@
 
 
     <TableRow>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="Temperature"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
 
         <TextView
@@ -75,6 +78,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="Feels Like"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
 
         <TextView
@@ -83,6 +87,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="Wind"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
 
         <TextView
@@ -91,6 +96,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="Overall"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
     </TableRow>
 
@@ -102,6 +108,7 @@
             android:layout_column="1"
             android:layout_gravity="center"
             android:padding="10dp"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
 
         <!--        should be dynamic-->
@@ -111,6 +118,7 @@
             android:layout_column="1"
             android:layout_gravity="center"
             android:padding="10dp"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
 
         <!--        should be dynamic-->
@@ -120,6 +128,7 @@
             android:layout_column="1"
             android:layout_gravity="center"
             android:padding="10dp"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
 
         <!--        should be dynamic-->
@@ -129,6 +138,7 @@
             android:layout_column="1"
             android:layout_gravity="center"
             android:padding="10dp"
+            android:textColor="?attr/text_color"
             android:textSize="16sp" />
     </TableRow>
 
