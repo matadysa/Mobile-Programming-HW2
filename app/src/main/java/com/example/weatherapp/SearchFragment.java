@@ -58,10 +58,6 @@ public class SearchFragment extends Fragment {
 
         View view = layoutInflater.inflate(R.layout.fragment_search, container, false);
 
-        //String cityName;
-        //Double longitude;
-        //Double latitude;
-
         cityNameRadioButton = view.findViewById(R.id.city_name_radio_button);
         fiAndLRadioButton = view.findViewById(R.id.fi_and_l_radio_button);
 
