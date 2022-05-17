@@ -55,19 +55,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.overallValue.setText(overallValues.get(position));
         switch (overallValues.get(position)) {
             case "Thunderstorm":
-                holder.overallIcon.setImageResource(R.id.);
+                holder.overallIcon.setImageResource(R.drawable.thunderstorm);
                 break;
             case "Drizzle":
+                holder.overallIcon.setImageResource(R.drawable.drizzle);
                 break;
             case "Rain":
+                holder.overallIcon.setImageResource(R.drawable.rain);
                 break;
             case "Snow":
+                holder.overallIcon.setImageResource(R.drawable.snow);
                 break;
             case "Clear":
+                holder.overallIcon.setImageResource(R.drawable.clear);
                 break;
             case "Clouds":
+                holder.overallIcon.setImageResource(R.drawable.cloudy);
                 break;
             default:
+                holder.overallIcon.setImageResource(R.drawable.mist);
                 break;
         }
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dateValues.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
