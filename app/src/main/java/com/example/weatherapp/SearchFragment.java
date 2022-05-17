@@ -1,6 +1,7 @@
 package com.example.weatherapp;
 
 import android.content.Context;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -24,7 +25,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class SearchFragment extends Fragment {
@@ -38,6 +46,8 @@ public class SearchFragment extends Fragment {
     private final String weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?";
     //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
     private final String coordinateApiUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+    //http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    private final String geocodingApiUrl = "http://api.openweathermap.org/geo/1.0/direct?";
     private final String appId = "b45229916cb8cfb3ec05d4579870f195";
 
     DecimalFormat df = new DecimalFormat("#.##");
@@ -87,26 +97,71 @@ public class SearchFragment extends Fragment {
     }
 
     private void getWeatherInformation(String cityName, Double longitude, Double latitude) {
-        String url;
-        if (cityName == null) {
-            url = coordinateApiUrl +
-                    "lat=" + df.format(latitude) +
-                    "&lon=" + df.format(longitude) +
-                    "&exclude=minutely,hourly,alerts" +
+        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
+        if (cityName != null) {
+            String cityUrl = weatherApiUrl +
+                    "q=" + cityName +
                     "&appid=" + appId;
-        } else {
-            url = weatherApiUrl + "q=" + cityName + "&appid=" + appId;
-        }
+            StringRequest request = new StringRequest(Request.Method.POST, cityUrl, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+//                    Log.d("response", response);
+                    double lon = 0, lat = 0;
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        JSONObject jsonObjectCoord = jsonResponse.getJSONObject("coord");
+                        lon = jsonObjectCoord.getDouble("lon");
+                        lat = jsonObjectCoord.getDouble("lat");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    weatherApiHandler(lon, lat);
+                }
+            }, error -> Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show());
+            requestQueue.add(request);
+        } else weatherApiHandler(longitude, latitude);
+    }
+
+    private void weatherApiHandler(double longitude, double latitude) {
+        String url;
+        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
+        url = coordinateApiUrl +
+                "lat=" + df.format(latitude) +
+                "&lon=" + df.format(longitude) +
+                "&units=metric" +
+                "&exclude=current,minutely,hourly,alerts" +
+                "&appid=" + appId;
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("response", response);
+//                Log.d("response", response);
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    JSONArray days = jsonResponse.getJSONArray("daily");
+                    ArrayList<HashMap<String, Object>> daysData = new ArrayList<>();
+                    for (int i = 0; i < 8; i++) {
+                        daysData.add(jsonDataExtractor(days.getJSONObject(i)));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, error -> Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show());
 
-        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
         requestQueue.add(stringRequest);
+    }
+
+    private HashMap<String, Object> jsonDataExtractor(JSONObject jsonObject) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        try {
+            Date date =  new Date(jsonObject.getLong("dt") * 1000);
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+//            Log.d("date", sdf.format(date));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
