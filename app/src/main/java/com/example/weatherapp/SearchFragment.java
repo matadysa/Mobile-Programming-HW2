@@ -236,11 +236,13 @@ public class SearchFragment extends Fragment {
             detailedCondition = overallWeatherObject.getString("description");
             hashMap.put("overallCondition", overallCondition);
             hashMap.put("detailedCondition", detailedCondition);
-
+            //Cloudiness
+            double cloudiness = jsonObject.getDouble("clouds");
+            hashMap.put("cloudiness", cloudiness);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+        return hashMap;
     }
 
 }
