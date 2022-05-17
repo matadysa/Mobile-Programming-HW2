@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/Table_layout"
+    android:id="@+id/parent_table_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -10,20 +10,18 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/text_date"
+            android:id="@+id/date_value"
             android:layout_width="wrap_content"
             android:layout_column="2"
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Date"
             android:textSize="28sp" />
     </TableRow>
 
     <TableRow>
 
         <ImageView
-            android:id="@+id/temp_icon"
             android:layout_width="52dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -33,7 +31,6 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/feels_like_icon"
             android:layout_width="49dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -43,7 +40,6 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/wind_icon"
             android:layout_width="49dp"
             android:layout_height="40dp"
             android:layout_column="1"
@@ -66,7 +62,6 @@
 
     <TableRow>
         <TextView
-            android:id="@+id/temp_text"
             android:layout_width="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -75,7 +70,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/feels_like_text"
             android:layout_width="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -84,7 +78,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/wind_text"
             android:layout_width="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -93,7 +86,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/overall_text"
             android:layout_width="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center"
