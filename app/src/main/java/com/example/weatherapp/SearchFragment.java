@@ -35,7 +35,7 @@ public class SearchFragment extends Fragment {
     Button searchButton;
 
     //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-    private final String weatherApiUrl = "api.openweathermap.org/data/2.5/weather?";
+    private final String weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?";
     //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
     private final String coordinateApiUrl = "https://api.openweathermap.org/data/2.5/onecall?";
     private final String appId = "b45229916cb8cfb3ec05d4579870f195";
