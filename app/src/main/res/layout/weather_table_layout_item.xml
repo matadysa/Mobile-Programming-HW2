@@ -5,20 +5,20 @@
     android:layout_margin="10dp"
     android:stretchColumns="1,2,3,4"
     android:background="#BCCFE0"
+    android:id="@+id/Table_layout"
     >
 
     <TableRow>
         <TextView
             android:id="@+id/text_date"
             android:layout_width="match_parent"
-            android:text="Today"
+            android:text="Date"
             android:textSize="16sp"
             android:layout_gravity="center"
             android:padding="10dp"
             android:layout_column="1"
             android:gravity="center"
             />
-
     </TableRow>
 
     <TableRow>
