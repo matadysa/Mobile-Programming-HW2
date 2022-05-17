@@ -1,8 +1,12 @@
 package com.example.weatherapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -55,7 +59,6 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         Context contextThemeWrapper;
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
@@ -90,6 +93,48 @@ public class SearchFragment extends Fragment {
                 } else {
                     Toast.makeText(getActivity(), "select a radio button", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        cityNameInputText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(cityNameRadioButton.isChecked()){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //TODO
+                        }
+                    }, 5000);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        latitudeInputText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(fiAndLRadioButton.isChecked()){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //TODO
+                        }
+                    }, 5000);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
             }
         });
 
