@@ -223,7 +223,19 @@ public class SearchFragment extends Fragment {
             //Humidity
             double humidity = jsonObject.getDouble("humidity");
             hashMap.put("humidity", humidity);
-            //wind
+            //Wind Speed
+            double windSpeed = jsonObject.getDouble("wind_speed");
+            hashMap.put("windSpeed", windSpeed);
+            //Overall Weather
+            JSONArray overallWeatherArray = jsonObject.getJSONArray("weather");
+            JSONObject overallWeatherObject = overallWeatherArray.getJSONObject(0);
+            String overallCondition, detailedCondition;
+            //Each group need different icons
+            //Thunderstorm, Drizzle, Rain, Snow, Clear, Clouds, (Mist, Smoke, Haze, Dust, Fog, Sand, Dust, Ash, Squall, Tornado)
+            overallCondition = overallWeatherObject.getString("main");
+            detailedCondition = overallWeatherObject.getString("description");
+            hashMap.put("overallCondition", overallCondition);
+            hashMap.put("detailedCondition", detailedCondition);
 
         } catch (JSONException e) {
             e.printStackTrace();
