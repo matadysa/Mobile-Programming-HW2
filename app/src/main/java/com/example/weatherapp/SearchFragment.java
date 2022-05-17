@@ -162,14 +162,14 @@ public class SearchFragment extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    weatherApiHandler(lon, lat);
+                    weatherApiHandler(lon, lat, cityName);
                 }
             }, error -> Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show());
             requestQueue.add(request);
-        } else weatherApiHandler(longitude, latitude);
+        } else weatherApiHandler(longitude, latitude, null);
     }
 
-    private void weatherApiHandler(double longitude, double latitude) {
+    private void weatherApiHandler(double longitude, double latitude, String cityName) {
         String url;
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
         url = coordinateApiUrl +
@@ -190,6 +190,14 @@ public class SearchFragment extends Fragment {
                     for (int i = 0; i < 8; i++) {
                         daysData.add(jsonDataExtractor(days.getJSONObject(i)));
                     }
+                    //Navigate to next activity
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("lon", longitude);
+                    intent.putExtra("lat", latitude);
+                    if (cityName == null) intent.putExtra("cityName", "");
+                    else intent.putExtra("cityName", cityName);
+                    intent.putExtra("data", daysData);
+                    startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
