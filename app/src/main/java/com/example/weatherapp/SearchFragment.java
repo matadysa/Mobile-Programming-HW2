@@ -1,6 +1,8 @@
 package com.example.weatherapp;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.textfield.TextInputEditText;
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.constants.MapboxConstants;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 import java.text.DecimalFormat;
 
@@ -30,7 +39,7 @@ public class SearchFragment extends Fragment {
 
     RadioGroup radioGroup;
     RadioButton fiAndLRadioButton, cityNameRadioButton;
-    TextInputEditText fiInputText, LInputText, cityNameInputText;
+    TextInputEditText longitudeInputText, latitudeInputText, cityNameInputText;
     Button searchButton;
 
     //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -57,6 +66,36 @@ public class SearchFragment extends Fragment {
 
         View view = layoutInflater.inflate(R.layout.fragment_search, container, false);
 
+        //String cityName;
+        //Double longitude;
+        //Double latitude;
+
+        cityNameRadioButton = view.findViewById(R.id.city_name_radio_button);
+        fiAndLRadioButton = view.findViewById(R.id.fi_and_l_radio_button);
+
+        cityNameInputText = view.findViewById(R.id.city_edittext);
+        longitudeInputText = view.findViewById(R.id.longitude_textview);
+        latitudeInputText = view.findViewById(R.id.latitude_edittext);
+
+        searchButton = view.findViewById(R.id.button);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(cityNameRadioButton.isChecked()){
+                    String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
+                    getWeatherInformation(cityName, null, null);
+                }
+                else if(fiAndLRadioButton.isChecked()){
+                    Double longitude = Double.valueOf(Objects.requireNonNull(longitudeInputText.getText()).toString().trim());
+                    Double latitude = Double.valueOf(Objects.requireNonNull(latitudeInputText.getText()).toString().trim());
+                    getWeatherInformation(null, longitude, latitude);
+                }
+                else{
+                    Toast.makeText(getActivity(), "select a radio button", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         return view;
     }

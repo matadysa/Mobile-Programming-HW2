@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioButton
+            android:id="@+id/city_name_radio_button"
             android:text="@string/city_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -29,16 +30,18 @@
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <EditText
                 android:id="@+id/city_edittext"
-                android:layout_alignParentEnd="true"
                 android:layout_width="0dp"
-                android:layout_toEndOf="@+id/city_textview"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:importantForAutofill="no" />
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/city_textview"
+                android:importantForAutofill="no"
+                android:inputType="textShortMessage" />
         </RelativeLayout>
         <RadioButton
+            android:id="@+id/fi_and_l_radio_button"
             android:text="@string/coordinates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -73,19 +76,35 @@
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <EditText
                 android:id="@+id/latitude_edittext"
-                android:layout_alignParentEnd="true"
                 android:layout_width="0dp"
-                android:layout_toEndOf="@+id/latitude_textview"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:importantForAutofill="no" />
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/latitude_textview"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="90dp"
+                android:layout_marginTop="60dp"
+                android:text="Search"
+                android:textAlignment="center" />
+
         </RelativeLayout>
+
+
+
     </com.example.weatherapp.EnhancedRadioGroup>
 
 
-<!--    <TextView-->
+
+
+    <!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_marginStart="20dp"-->
