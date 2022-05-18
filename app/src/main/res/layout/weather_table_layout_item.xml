@@ -4,26 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+<<<<<<< HEAD
     android:background="?attr/recycler_item_background_color"
+    >
+
+    <TableRow
+        android:layout_width="0dp">
+=======
+    android:background="?attr/table_background_color"
     android:stretchColumns="1,2,3,4">
 
-    <TableRow>
+    <TableRow android:layout_width="342dp">
+>>>>>>> master
 
         <TextView
             android:id="@+id/date_value"
-            android:layout_width="wrap_content"
-            android:layout_column="2"
+            android:layout_width="match_parent"
+            android:layout_column="1"
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="10dp"
             android:textColor="?attr/text_color"
-            android:textSize="22sp" />
+            android:textSize="15sp" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_width="0dp">
 
         <ImageView
-            android:layout_width="52dp"
+<<<<<<< HEAD
+            android:id="@+id/actual_temp_icon"
+=======
+            android:layout_width="50dp"
+>>>>>>> master
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -32,7 +45,12 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:layout_width="49dp"
+<<<<<<< HEAD
+            android:layout_width="wrap_content"
+            android:id="@+id/fells_like_temp_icon"
+=======
+            android:layout_width="50dp"
+>>>>>>> master
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -41,7 +59,12 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:layout_width="49dp"
+<<<<<<< HEAD
+            android:layout_width="wrap_content"
+            android:id="@+id/wind_icon"
+=======
+            android:layout_width="50dp"
+>>>>>>> master
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -51,8 +74,13 @@
 
         <!--        should be dynamic-->
         <ImageView
+            android:layout_marginEnd="0dp"
+            android:layout_width="wrap_content"
             android:id="@+id/overall_icon"
-            android:layout_width="49dp"
+<<<<<<< HEAD
+=======
+            android:layout_width="50dp"
+>>>>>>> master
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -61,7 +89,8 @@
     </TableRow>
 
 
-    <TableRow>
+    <TableRow
+        android:layout_width="0dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,7 +99,7 @@
             android:padding="10dp"
             android:text="Temperature"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +108,7 @@
             android:padding="10dp"
             android:text="Feels Like"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,7 +117,7 @@
             android:padding="10dp"
             android:text="Wind"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -97,10 +126,11 @@
             android:padding="10dp"
             android:text="Overall"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_width="0dp">
         <!--        should be dynamic-->
         <TextView
             android:id="@+id/temp_value"
