@@ -4,26 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="?attr/background_color"
+    android:background="?attr/table_background_color"
     android:stretchColumns="1,2,3,4">
 
-    <TableRow>
+    <TableRow android:layout_width="342dp">
 
         <TextView
             android:id="@+id/date_value"
-            android:layout_width="wrap_content"
-            android:layout_column="2"
+            android:layout_width="match_parent"
+            android:layout_column="1"
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="10dp"
             android:textColor="?attr/text_color"
-            android:textSize="22sp" />
+            android:textSize="15sp" />
     </TableRow>
 
     <TableRow>
 
         <ImageView
-            android:layout_width="52dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -32,7 +32,7 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:layout_width="49dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -41,7 +41,7 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:layout_width="49dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -52,7 +52,7 @@
         <!--        should be dynamic-->
         <ImageView
             android:id="@+id/overall_icon"
-            android:layout_width="49dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -70,7 +70,7 @@
             android:padding="10dp"
             android:text="Temperature"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
             android:padding="10dp"
             android:text="Feels Like"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
             android:padding="10dp"
             android:text="Wind"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
             android:padding="10dp"
             android:text="Overall"
             android:textColor="?attr/text_color"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
     </TableRow>
 
     <TableRow>

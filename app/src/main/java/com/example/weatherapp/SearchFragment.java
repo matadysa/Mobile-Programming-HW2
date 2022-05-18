@@ -45,6 +45,7 @@ public class SearchFragment extends Fragment {
     RadioButton fiAndLRadioButton, cityNameRadioButton;
     EditText longitudeInputText, latitudeInputText, cityNameInputText;
     Button searchButton;
+    Handler handler = new Handler();
 
     //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
     private final String weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?";
@@ -83,6 +84,8 @@ public class SearchFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                handler.removeCallbacksAndMessages(null);
+
                 if (cityNameRadioButton.isChecked()) {
                     String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
 
@@ -111,16 +114,18 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (cityNameRadioButton.isChecked()) {
-                    new Handler().postDelayed(new Runnable() {
+                    Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
                             String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
-
                             if(!cityName.equals("")){
                                 getWeatherInformation(cityName, null, null);
                             }
                         }
-                    }, 5000);
+                    };
+                    handler.postDelayed(runnable, 5000);
+
+
                 }
             }
 
@@ -137,7 +142,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (fiAndLRadioButton.isChecked()) {
-                    new Handler().postDelayed(new Runnable() {
+                    Runnable runnable2 = new Runnable() {
                         @Override
                         public void run() {
                             String longitude = Objects.requireNonNull(longitudeInputText.getText()).toString().trim();
@@ -147,7 +152,8 @@ public class SearchFragment extends Fragment {
                                 getWeatherInformation(null, Double.valueOf(longitude), Double.valueOf(latitude));
                             }
                         }
-                    }, 5000);
+                    };
+                    handler.postDelayed(runnable2, 5000);
                 }
             }
 
