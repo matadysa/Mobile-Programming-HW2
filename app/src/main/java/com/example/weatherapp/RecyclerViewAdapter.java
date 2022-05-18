@@ -1,6 +1,7 @@
 package com.example.weatherapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         int parentWidth = holder.parentLayout.getWidth();
+        Log.d("parentWidth", String.valueOf(parentWidth));
         holder.actualTempIcon.setMaxWidth(20);
         holder.feelsLikeTempIcon.setMaxWidth(20);
         holder.windIcon.setMaxWidth(20);

@@ -45,7 +45,6 @@ public class DarkModePageFragment extends Fragment {
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
-                ((StartActivity) getActivity()).setViewPager(1);
             }
         });
 

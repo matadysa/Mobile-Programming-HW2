@@ -14,7 +14,7 @@ public class StartActivity extends AppCompatActivity {
     private FragmentsStateAdapter fragmentsStateAdapter;
     private ViewPager2 viewPager;
 
-    private TabLayout tabLayout;
+    public TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,11 @@ public class StartActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0) {
+                    setViewPager(0);
+                } else {
+                    setViewPager(1);
+                }
             }
         });
     }
