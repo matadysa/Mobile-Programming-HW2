@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="?attr/background_color"
+    android:background="?attr/recycler_item_background_color"
     android:stretchColumns="1,2,3,4">
 
     <TableRow>
