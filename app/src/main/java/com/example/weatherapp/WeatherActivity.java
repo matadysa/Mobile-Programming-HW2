@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class WeatherActivity extends AppCompatActivity {
 
     TextView cityNameText;
+    public static String locationName;
 
     ArrayList<String> dateValues = new ArrayList<>();
     ArrayList<Double> tempValues = new ArrayList<>();
@@ -49,6 +50,7 @@ public class WeatherActivity extends AppCompatActivity {
             cityName = "Longitude=" + longitude + " , Latitude=" + latitude;
         }
         cityNameText.setText(cityName);
+        locationName = cityName;
 
         for (HashMap<String, Object> map : fullDataList) {
             dateValues.add((String) map.get("date"));
@@ -72,5 +74,9 @@ public class WeatherActivity extends AppCompatActivity {
                 fullDataList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    public static String getCityName(){
+        return locationName;
     }
 }

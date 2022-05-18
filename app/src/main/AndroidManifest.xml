@@ -15,7 +15,8 @@
         android:theme="@style/Theme.Light">
         <activity
             android:name=".DetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".WeatherActivity"/>
         <activity
             android:name=".WeatherActivity"
             android:exported="false"

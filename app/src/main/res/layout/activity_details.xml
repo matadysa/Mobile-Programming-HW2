@@ -4,6 +4,330 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     tools:context=".DetailsActivity">
+
+    <TextView
+        android:id="@+id/city_or_location_detail_text"
+        android:textColor="?attr/text_color"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="CityOrLocation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.110"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/detail_dte_textView"
+        android:textColor="?attr/text_color"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.790"
+        app:layout_constraintStart_toEndOf="@+id/city_or_location_detail_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:background="?attr/recycler_item_background_color"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:stretchColumns="1,2,3,4,5"
+        app:layout_constraintTop_toBottomOf="@+id/city_or_location_detail_text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <!-- Temp data -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Temp data"
+                android:textStyle="bold"
+                android:textColor="?attr/text_color" />
+
+            <ImageView
+                android:layout_column="4"
+                android:src="@drawable/thermometer"
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Actual Temp"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:id="@+id/detail_actual_temp_textView"
+                android:textColor="?attr/text_color"
+                android:layout_gravity="center"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Max Temp"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:id="@+id/detail_max_temp_textView"
+                android:textColor="?attr/text_color" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Min Temp"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:id="@+id/detail_min_temp_textView"
+                android:textColor="?attr/text_color" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Feels like Temp"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:id="@+id/detail_feelsLike_temp_textView"
+                android:textColor="?attr/text_color" />
+        </TableRow>
+
+        <!-- Humidity data -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Humidity data"
+                android:textStyle="bold"
+                android:textColor="?attr/text_color" />
+
+            <ImageView
+                android:layout_column="4"
+                android:src="@drawable/humidity"
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Humidity"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:id="@+id/detail_humidity_textView"
+                android:textColor="?attr/text_color" />
+        </TableRow>
+
+        <!-- Wind data -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Wind data"
+                android:textStyle="bold"
+                android:textColor="?attr/text_color" />
+
+            <ImageView
+                android:layout_column="4"
+                android:src="@drawable/wind_sign"
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Wind speed"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:id="@+id/detail_wind_speed_textView"
+                android:textColor="?attr/text_color" />
+        </TableRow>
+
+        <!-- Overall data -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Overall data"
+                android:textStyle="bold"
+                android:textColor="?attr/text_color" />
+
+            <ImageView
+                android:layout_column="4"
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                android:id="@+id/details_imageView"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Overall"
+                android:id="@+id/salam"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:id="@+id/detail_overall"
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:textColor="?attr/text_color" />
+        </TableRow>
+
+        <!-- Cloudiness data -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Cloudiness data"
+                android:textStyle="bold"
+                android:textColor="?attr/text_color" />
+
+            <ImageView
+                android:layout_column="4"
+                android:src="@drawable/cloudy"
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="10dp"
+            tools:ignore="RtlSymmetry"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:text="Cloudiness"
+                android:textColor="?attr/text_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:id="@+id/detail_cloudiness_textView"
+                android:textColor="?attr/text_color"/>
+        </TableRow>
+
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
