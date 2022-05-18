@@ -85,11 +85,18 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 if (cityNameRadioButton.isChecked()) {
                     String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
-                    getWeatherInformation(cityName, null, null);
+
+                    if(!cityName.equals("")){
+                        getWeatherInformation(cityName, null, null);
+                    }
                 } else if (fiAndLRadioButton.isChecked()) {
-                    Double longitude = Double.valueOf(Objects.requireNonNull(longitudeInputText.getText()).toString().trim());
-                    Double latitude = Double.valueOf(Objects.requireNonNull(latitudeInputText.getText()).toString().trim());
-                    getWeatherInformation(null, longitude, latitude);
+                    String longitude = Objects.requireNonNull(longitudeInputText.getText()).toString().trim();
+                    String latitude = Objects.requireNonNull(latitudeInputText.getText()).toString().trim();
+
+                    if(!longitude.equals("") && !latitude.equals("")){
+                        getWeatherInformation(null, Double.valueOf(longitude), Double.valueOf(latitude));
+                    }
+
                 } else {
                     Toast.makeText(getActivity(), "select a radio button", Toast.LENGTH_SHORT).show();
                 }
@@ -107,7 +114,11 @@ public class SearchFragment extends Fragment {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            //TODO
+                            String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
+
+                            if(!cityName.equals("")){
+                                getWeatherInformation(cityName, null, null);
+                            }
                         }
                     }, 5000);
                 }
@@ -129,7 +140,12 @@ public class SearchFragment extends Fragment {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            //TODO
+                            String longitude = Objects.requireNonNull(longitudeInputText.getText()).toString().trim();
+                            String latitude = Objects.requireNonNull(latitudeInputText.getText()).toString().trim();
+
+                            if(!longitude.equals("") && !latitude.equals("")){
+                                getWeatherInformation(null, Double.valueOf(longitude), Double.valueOf(latitude));
+                            }
                         }
                     }, 5000);
                 }
