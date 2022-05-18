@@ -6,108 +6,124 @@
     android:layout_margin="10dp"
     android:background="?attr/recycler_item_background_color">
 
-    <TableRow
-        android:layout_width="0dp">
+    <TableRow>
+
         <TextView
             android:id="@+id/date_value"
             android:layout_width="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:gravity="left"
             android:padding="10dp"
             android:textColor="?attr/text_color"
             android:textSize="18sp" />
     </TableRow>
 
-    <TableRow
-        android:layout_width="0dp">
+    <TableRow>
 
         <ImageView
             android:id="@+id/actual_temp_icon"
-            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
             android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="0dp"
-            android:src="@drawable/thermometer"/>
+            android:src="@drawable/thermometer" />
 
         <ImageView
-            android:layout_width="wrap_content"
             android:id="@+id/fells_like_temp_icon"
-            android:layout_height="40dp"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_column="2"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="0dp"
-            android:src="@drawable/thermometer2"/>
+            android:src="@drawable/thermometer2" />
 
         <ImageView
-            android:layout_width="wrap_content"
             android:id="@+id/wind_icon"
-            android:layout_height="40dp"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_column="3"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="0dp"
-            android:src="@drawable/wind_sign"/>
+            android:src="@drawable/wind_sign" />
 
         <!--        should be dynamic-->
         <ImageView
-            android:layout_marginEnd="0dp"
-            android:layout_width="wrap_content"
             android:id="@+id/overall_icon"
-            android:layout_height="40dp"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_column="4"
             android:layout_gravity="center"
-            android:padding="0dp"/>
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:padding="0dp" />
     </TableRow>
 
 
-    <TableRow
-        android:layout_width="0dp">
+    <TableRow>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:text="Temperature"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_column="2"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:text="Feels Like"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_column="3"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:text="Wind"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_column="4"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:text="Overall"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
     </TableRow>
 
-    <TableRow
-        android:layout_width="0dp">
+    <TableRow>
         <!--        should be dynamic-->
         <TextView
             android:id="@+id/temp_value"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
@@ -115,9 +131,11 @@
         <!--        should be dynamic-->
         <TextView
             android:id="@+id/feels_like_value"
-            android:layout_width="wrap_content"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_column="2"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
@@ -125,9 +143,11 @@
         <!--        should be dynamic-->
         <TextView
             android:id="@+id/wind_value"
-            android:layout_width="wrap_content"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_column="3"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
@@ -135,9 +155,11 @@
         <!--        should be dynamic-->
         <TextView
             android:id="@+id/overall_value"
-            android:layout_width="wrap_content"
-            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_column="4"
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
             android:textColor="?attr/text_color"
             android:textSize="12sp" />
