@@ -9,11 +9,11 @@
 
     <TextView
         android:id="@+id/city_or_location_detail_text"
-        android:textColor="?attr/text_color"
         android:layout_width="110dp"
         android:layout_height="60dp"
         android:gravity="center"
         android:text="CityOrLocation"
+        android:textColor="?attr/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.110"
@@ -23,11 +23,11 @@
 
     <TextView
         android:id="@+id/detail_dte_textView"
-        android:textColor="?attr/text_color"
         android:layout_width="110dp"
         android:layout_height="60dp"
         android:gravity="center"
         android:text="Date"
+        android:textColor="?attr/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.790"

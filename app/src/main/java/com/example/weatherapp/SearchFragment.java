@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -27,21 +25,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.textfield.TextInputEditText;
+import com.kosalgeek.android.caching.FileCacher;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class SearchFragment extends Fragment {
 
-    RadioGroup radioGroup;
     RadioButton fiAndLRadioButton, cityNameRadioButton;
     EditText longitudeInputText, latitudeInputText, cityNameInputText;
     Button searchButton;
@@ -89,14 +88,14 @@ public class SearchFragment extends Fragment {
                 if (cityNameRadioButton.isChecked()) {
                     String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
 
-                    if(!cityName.equals("")){
+                    if (!cityName.equals("")) {
                         getWeatherInformation(cityName, null, null);
                     }
                 } else if (fiAndLRadioButton.isChecked()) {
                     String longitude = Objects.requireNonNull(longitudeInputText.getText()).toString().trim();
                     String latitude = Objects.requireNonNull(latitudeInputText.getText()).toString().trim();
 
-                    if(!longitude.equals("") && !latitude.equals("")){
+                    if (!longitude.equals("") && !latitude.equals("")) {
                         getWeatherInformation(null, Double.valueOf(longitude), Double.valueOf(latitude));
                     }
 
@@ -124,7 +123,7 @@ public class SearchFragment extends Fragment {
                         @Override
                         public void run() {
                             String cityName = Objects.requireNonNull(cityNameInputText.getText()).toString();
-                            if(!cityName.equals("")){
+                            if (!cityName.equals("")) {
                                 getWeatherInformation(cityName, null, null);
                             }
                         }
@@ -156,7 +155,7 @@ public class SearchFragment extends Fragment {
                             String longitude = Objects.requireNonNull(longitudeInputText.getText()).toString().trim();
                             String latitude = Objects.requireNonNull(latitudeInputText.getText()).toString().trim();
 
-                            if(!longitude.equals("") && !latitude.equals("")){
+                            if (!longitude.equals("") && !latitude.equals("")) {
                                 getWeatherInformation(null, Double.valueOf(longitude), Double.valueOf(latitude));
                             }
                         }
@@ -190,7 +189,12 @@ public class SearchFragment extends Fragment {
                     }
                     weatherApiHandler(lon, lat, cityName);
                 }
-            }, error -> Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show());
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    cacheLoader(cityName);
+                }
+            });
             requestQueue.add(request);
         } else weatherApiHandler(longitude, latitude, null);
     }
@@ -213,24 +217,104 @@ public class SearchFragment extends Fragment {
                     JSONObject jsonResponse = new JSONObject(response);
                     JSONArray days = jsonResponse.getJSONArray("daily");
                     ArrayList<HashMap<String, Object>> daysData = new ArrayList<>();
+                    HashMap<String, Object> loc = new HashMap<>();
+                    loc.put("longitude", longitude);
+                    loc.put("latitude", latitude);
                     for (int i = 0; i < 8; i++) {
                         daysData.add(jsonDataExtractor(days.getJSONObject(i)));
                     }
+                    daysData.add(loc);
+                    if (cityName == null) {
+                        FileCacher<ArrayList<HashMap<String, Object>>> fileCacher = new FileCacher<>(getActivity(),
+                                "lon" + longitude + "lat" + latitude + ".txt");
+                        try {
+                            fileCacher.writeCache(daysData);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        FileCacher<ArrayList<HashMap<String, Object>>> fileCacher = new FileCacher<>(getActivity(),
+                                cityName.toLowerCase() + ".txt");
+                        try {
+                            fileCacher.writeCache(daysData);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     //Navigate to next activity
-                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                    intent.putExtra("lon", longitude);
-                    intent.putExtra("lat", latitude);
-                    if (cityName == null) intent.putExtra("cityName", "");
-                    else intent.putExtra("cityName", cityName);
-                    intent.putExtra("data", daysData);
-                    startActivity(intent);
+                    navigateToNextActivity(daysData, cityName);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }, error -> Toast.makeText(getActivity(), error.toString().trim(), Toast.LENGTH_SHORT).show());
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                cacheLoader(longitude, latitude);
+            }
+        });
 
         requestQueue.add(stringRequest);
+    }
+
+    private void navigateToNextActivity(ArrayList<HashMap<String, Object>> daysData, String cityName) {
+        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+        intent.putExtra("lon", (Double) daysData.get(8).get("longitude"));
+        intent.putExtra("lat", (Double) daysData.get(8).get("latitude"));
+        if (cityName == null) intent.putExtra("cityName", "");
+        else intent.putExtra("cityName", cityName);
+        intent.putExtra("data", daysData);
+        startActivity(intent);
+    }
+
+    private void cacheLoader(String cityName) {
+        FileCacher<ArrayList<HashMap<String, Object>>> fileCacher = new FileCacher<>(getActivity(),
+                cityName.toLowerCase() + ".txt");
+        Calendar calendar = Calendar.getInstance();
+        Date now = calendar.getTime();
+        if (fileCacher.hasCache()) {
+            try {
+                ArrayList<HashMap<String, Object>> list = fileCacher.readCache();
+                if (now.getTime() - (long) list.get(0).get("unixutc") > 43200000) {
+                    Toast.makeText(getActivity(),
+                            "Connection to server failed and cached data is outdated.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    navigateToNextActivity(list, cityName);
+                }
+            } catch (IOException | ClassCastException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getActivity(),
+                    "Connection to server failed and no cached data was found.",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void cacheLoader(double longitude, double latitude) {
+        FileCacher<ArrayList<HashMap<String, Object>>> fileCacher = new FileCacher<>(getActivity(),
+                "lon" + longitude + "lat" + latitude + ".txt");
+        Calendar calendar = Calendar.getInstance();
+        Date now = calendar.getTime();
+        if (fileCacher.hasCache()) {
+            try {
+                ArrayList<HashMap<String, Object>> list = fileCacher.readCache();
+                if (now.getTime() - (long) list.get(0).get("unixutc") > 43200000) {
+                    Toast.makeText(getActivity(),
+                            "Connection to server failed and cached data is outdated.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    navigateToNextActivity(list, null);
+                }
+            } catch (IOException | ClassCastException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getActivity(),
+                    "Connection to server failed and no cached data was found.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     private HashMap<String, Object> jsonDataExtractor(JSONObject jsonObject) {
@@ -239,6 +323,7 @@ public class SearchFragment extends Fragment {
             //Date
             Date date = new Date(jsonObject.getLong("dt") * 1000);
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            hashMap.put("unixutc", jsonObject.getLong("dt") * (long) 1000);
             hashMap.put("date", sdf.format(date));
             //Actual Temp
             JSONObject actualTempObject = jsonObject.getJSONObject("temp");

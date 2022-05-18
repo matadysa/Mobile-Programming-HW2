@@ -1,17 +1,13 @@
 package com.example.weatherapp;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -25,8 +21,6 @@ public class DetailsActivity extends AppCompatActivity {
             setTheme(R.style.Theme_Light);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
-
 
 
         TextView cityNameTextView = findViewById(R.id.city_or_location_detail_text);
