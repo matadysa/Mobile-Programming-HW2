@@ -49,6 +49,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        int parentWidth = holder.parentLayout.getWidth();
+        holder.actualTempIcon.setMaxWidth(20);
+        holder.feelsLikeTempIcon.setMaxWidth(20);
+        holder.windIcon.setMaxWidth(20);
+        holder.overallIcon.setMaxWidth(20);
+
         holder.dateValue.setText(dateValues.get(position));
         holder.tempValue.setText(String.valueOf(tempValues.get(position)));
         holder.feelsLikeValue.setText(String.valueOf(feelsLikeValues.get(position)));
@@ -77,12 +83,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 holder.overallIcon.setImageResource(R.drawable.mist);
                 break;
         }
-//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //TODO: call new activity for detailed page, pass the fulllData to next activity
-//            }
-//        });
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: call new activity for detailed page, pass the fulllData to next activity
+            }
+        });
     }
 
     @Override
@@ -93,7 +99,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView dateValue, tempValue, feelsLikeValue, windValue, overallValue;
-        ImageView overallIcon;
+        ImageView actualTempIcon, feelsLikeTempIcon, windIcon, overallIcon;
         TableLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
@@ -103,6 +109,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             feelsLikeValue = itemView.findViewById(R.id.feels_like_value);
             windValue = itemView.findViewById(R.id.wind_value);
             overallValue = itemView.findViewById(R.id.overall_value);
+            actualTempIcon = itemView.findViewById(R.id.actual_temp_icon);
+            feelsLikeTempIcon = itemView.findViewById(R.id.fells_like_temp_icon);
+            windIcon = itemView.findViewById(R.id.wind_icon);
             overallIcon = itemView.findViewById(R.id.overall_icon);
             parentLayout = itemView.findViewById(R.id.parent_table_layout);
         }

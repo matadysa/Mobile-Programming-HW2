@@ -5,9 +5,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="?attr/recycler_item_background_color"
-    android:stretchColumns="1,2,3,4">
+    >
 
-    <TableRow>
+    <TableRow
+        android:layout_width="0dp">
 
         <TextView
             android:id="@+id/date_value"
@@ -20,10 +21,11 @@
             android:textSize="22sp" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_width="0dp">
 
         <ImageView
-            android:layout_width="52dp"
+            android:id="@+id/actual_temp_icon"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -32,7 +34,8 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:layout_width="49dp"
+            android:layout_width="wrap_content"
+            android:id="@+id/fells_like_temp_icon"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -41,7 +44,8 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:layout_width="49dp"
+            android:layout_width="wrap_content"
+            android:id="@+id/wind_icon"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -51,8 +55,9 @@
 
         <!--        should be dynamic-->
         <ImageView
+            android:layout_marginEnd="0dp"
+            android:layout_width="wrap_content"
             android:id="@+id/overall_icon"
-            android:layout_width="49dp"
             android:layout_height="40dp"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -61,7 +66,8 @@
     </TableRow>
 
 
-    <TableRow>
+    <TableRow
+        android:layout_width="0dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -100,7 +106,8 @@
             android:textSize="16sp" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_width="0dp">
         <!--        should be dynamic-->
         <TextView
             android:id="@+id/temp_value"
