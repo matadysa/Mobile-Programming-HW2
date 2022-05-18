@@ -50,12 +50,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int parentWidth = holder.parentLayout.getWidth();
-        Log.d("parentWidth", String.valueOf(parentWidth));
-        holder.actualTempIcon.setMaxWidth(20);
-        holder.feelsLikeTempIcon.setMaxWidth(20);
-        holder.windIcon.setMaxWidth(20);
-        holder.overallIcon.setMaxWidth(20);
 
         holder.dateValue.setText(dateValues.get(position));
         holder.tempValue.setText(String.valueOf(tempValues.get(position)));
