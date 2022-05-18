@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.Objects;
 
 
@@ -45,6 +47,8 @@ public class DarkModePageFragment extends Fragment {
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
+                TabLayout.Tab tab = ((StartActivity) getActivity()).tabLayout.getTabAt(1);
+                tab.select();
             }
         });
 
