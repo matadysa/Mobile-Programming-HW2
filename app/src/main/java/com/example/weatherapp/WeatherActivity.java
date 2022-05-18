@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -21,7 +20,7 @@ public class WeatherActivity extends AppCompatActivity {
     ArrayList<Double> feelsLikeValues = new ArrayList<>();
     ArrayList<Double> windValues = new ArrayList<>();
     ArrayList<String> overallValues = new ArrayList<>();
-    ArrayList<HashMap<String, Object>> fullData;
+    ArrayList<HashMap<String, Object>> fullDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class WeatherActivity extends AppCompatActivity {
         String cityName = "";
         double longitude = 0, latitude = 0;
         if (extras != null) {
-            fullData = (ArrayList<HashMap<String, Object>>) extras.get("data");
+            fullDataList = (ArrayList<HashMap<String, Object>>) extras.get("data");
             cityName = extras.getString("cityName");
             longitude = extras.getDouble("lon");
             latitude = extras.getDouble("lat");
@@ -51,7 +50,7 @@ public class WeatherActivity extends AppCompatActivity {
         }
         cityNameText.setText(cityName);
 
-        for (HashMap<String, Object> map : fullData) {
+        for (HashMap<String, Object> map : fullDataList) {
             dateValues.add((String) map.get("date"));
             tempValues.add((Double) map.get("actualTemp"));
             feelsLikeValues.add((Double) map.get("feelsLikeTemp"));
@@ -70,7 +69,7 @@ public class WeatherActivity extends AppCompatActivity {
                 feelsLikeValues,
                 windValues,
                 overallValues,
-                fullData);
+                fullDataList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

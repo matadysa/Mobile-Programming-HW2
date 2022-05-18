@@ -1,7 +1,7 @@
 package com.example.weatherapp;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     ArrayList<Double> feelsLikeValues;
     ArrayList<Double> windValues;
     ArrayList<String> overallValues;
-    ArrayList<HashMap<String, Object>> fullData;
+    ArrayList<HashMap<String, Object>> fullDataList;
     Context mContext;
 
     public RecyclerViewAdapter(Context mContext,
@@ -31,14 +31,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                ArrayList<Double> feelsLikeValues,
                                ArrayList<Double> windValues,
                                ArrayList<String> overallValues,
-                               ArrayList<HashMap<String, Object>> fullData) {
+                               ArrayList<HashMap<String, Object>> fullDataList) {
         this.mContext = mContext;
         this.dateValues = dateValues;
         this.tempValues = tempValues;
         this.feelsLikeValues = feelsLikeValues;
         this.windValues = windValues;
         this.overallValues = overallValues;
-        this.fullData = fullData;
+        this.fullDataList = fullDataList;
     }
 
     @NonNull
@@ -51,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        holder.fullData = fullDataList.get(position);
         holder.dateValue.setText(dateValues.get(position));
         holder.tempValue.setText(String.valueOf(tempValues.get(position)));
         holder.feelsLikeValue.setText(String.valueOf(feelsLikeValues.get(position)));
@@ -82,7 +83,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: call new activity for detailed page, pass the fulllData to next activity
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra("fullData", holder.fullData);
+                mContext.startActivity(intent);
             }
         });
     }
@@ -97,6 +100,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView dateValue, tempValue, feelsLikeValue, windValue, overallValue;
         ImageView actualTempIcon, feelsLikeTempIcon, windIcon, overallIcon;
         TableLayout parentLayout;
+        HashMap<String, Object> fullData;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
