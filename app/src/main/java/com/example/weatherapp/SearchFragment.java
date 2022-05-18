@@ -118,6 +118,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                handler.removeCallbacksAndMessages(null);
                 if (cityNameRadioButton.isChecked()) {
                     Runnable runnable = new Runnable() {
                         @Override
@@ -142,11 +143,12 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                handler.removeCallbacksAndMessages(null);
                 if (fiAndLRadioButton.isChecked()) {
                     Runnable runnable2 = new Runnable() {
                         @Override
