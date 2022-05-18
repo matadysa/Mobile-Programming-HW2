@@ -113,6 +113,11 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
                 if (cityNameRadioButton.isChecked()) {
                     Runnable runnable = new Runnable() {
                         @Override
@@ -128,10 +133,6 @@ public class SearchFragment extends Fragment {
 
                 }
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
         });
 
         latitudeInputText.addTextChangedListener(new TextWatcher() {
@@ -141,6 +142,11 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
                 if (fiAndLRadioButton.isChecked()) {
                     Runnable runnable2 = new Runnable() {
                         @Override
@@ -155,10 +161,6 @@ public class SearchFragment extends Fragment {
                     };
                     handler.postDelayed(runnable2, 5000);
                 }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
             }
         });
 
